@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="shadeView">
+        <attr name="Icon" format="reference" />
+        <attr name="defaultColor" format="color" />
+        <attr name="changeColor" format="color" />
+        <attr name="text" format="string" />
+        <attr name="textsize" format="dimension" />
+    </declare-styleable>
+
+
+</resources>
