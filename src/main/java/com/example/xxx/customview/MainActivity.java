@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.widget.SeekBar;
 
 import com.example.xxx.customview.view.ShadeView;
+import com.example.xxx.customview.view.roundWave;
 
 public class MainActivity extends Activity {
 
 
     SeekBar seekBar;
     ShadeView shadeView, shadeView2, shadeView3;
+    roundWave roundWave;
 
 
     @Override
@@ -22,6 +24,7 @@ public class MainActivity extends Activity {
         shadeView = (ShadeView) findViewById(R.id.shadeView);
         shadeView2 = (ShadeView) findViewById(R.id.shadeView2);
         shadeView3 = (ShadeView) findViewById(R.id.shadeView3);
+        roundWave= (roundWave) findViewById(R.id.roundWave);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -30,6 +33,8 @@ public class MainActivity extends Activity {
 
                 shadeView2.setIconAlpha((float) (1 - (progress * 0.01)));
                 shadeView3.setIconAlpha((float) (progress * 0.01));
+
+                roundWave.invalidateView();
             }
 
             @Override
