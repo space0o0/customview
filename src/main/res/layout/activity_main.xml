@@ -14,7 +14,8 @@
 
     <com.example.xxx.customview.view.LoadingLine
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="20dp"
+        android:id="@+id/loadingLine" />
 
     <com.example.xxx.customview.view.roundWave
         android:id="@+id/roundWave"
@@ -61,7 +62,11 @@
             app:changeColor="@color/red"
             app:defaultColor="@color/blue" />
 
+        <Button
+            android:id="@+id/bt_waveView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="waveView"/>
     </LinearLayout>
-
 
 </LinearLayout>

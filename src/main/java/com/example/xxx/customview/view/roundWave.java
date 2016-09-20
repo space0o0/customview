@@ -10,6 +10,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.os.Looper;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.example.xxx.customview.R;
@@ -26,6 +27,7 @@ public class roundWave extends View {
      * @param context The Context the view is running in, through which it can
      * access the current theme, resources, etc.
      */
+    private final static String TAG = "roundWave----------------------";
 
     Paint mPaint;
 
@@ -58,8 +60,12 @@ public class roundWave extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
+        int width=MeasureSpec.getSize(widthMeasureSpec);
+        int height=MeasureSpec.getSize(heightMeasureSpec);
+
+        Log.i(TAG, "onMeasure"+"mode:"+MeasureSpec.getMode(widthMeasureSpec)+"////"+"mode:"+MeasureSpec.getMode(heightMeasureSpec));
         //因为绘制圆形，就先绘制一个正方形的rect区域
-        bodyWidth = Math.min(getWidth() - getPaddingRight() - getPaddingLeft() - 10, getHeight() - getPaddingTop() - getPaddingBottom() - 10);
+        bodyWidth = Math.min(width - getPaddingRight() - getPaddingLeft() - 10, height - getPaddingTop() - getPaddingBottom() - 10);
         bodyHeight = bodyWidth;
 
         bodyRectF = new RectF();
@@ -73,6 +79,12 @@ public class roundWave extends View {
 
     Bitmap srcBitmap, dstBitmap;
 
+    @Override
+    public void onWindowFocusChanged(boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+        Log.i(TAG, "onWindowFocusChanged");
+    }
+
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
@@ -81,6 +93,9 @@ public class roundWave extends View {
         canvas.drawRect(0, 0, bodyWidth, bodyHeight, mPaint);
 
         super.onDraw(canvas);
+
+        Log.i(TAG, "onDraw");
+
 /**
  * 绘制一个圆，从onmeasure中获取半径
  * 1、绘制底色
@@ -102,6 +117,14 @@ public class roundWave extends View {
     }
 
     private Bitmap drawRound() {
+        if (bodyWidth < 0 | bodyHeight < 0) {
+            try {
+                throw new Exception("ddddd");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
         Bitmap bitmap = Bitmap.createBitmap((int) bodyWidth / 2, (int) bodyHeight / 2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint();
@@ -117,6 +140,16 @@ public class roundWave extends View {
     }
 
     private Bitmap drawDst() {
+
+        if (bodyWidth < 0 | bodyHeight < 0) {
+            try {
+                throw new Exception("ddddd");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
         Bitmap bitmap = Bitmap.createBitmap((int) bodyWidth / 2, (int) bodyHeight / 2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -128,6 +161,14 @@ public class roundWave extends View {
     }
 
     private Bitmap drawWave() {
+        if (bodyWidth < 0 | bodyHeight < 0) {
+            try {
+                throw new Exception("ddddd");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
         Bitmap bitmap = Bitmap.createBitmap((int) bodyWidth / 2, (int) bodyHeight / 2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         Paint wavePaint = new Paint(Paint.ANTI_ALIAS_FLAG);

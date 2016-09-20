@@ -81,8 +81,11 @@ public class XfermodeView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        screenWidth = getWidth();
-        screenHeight = getHeight();
+
+//        screenWidth = getWidth();
+//        screenHeight = getHeight();
+        screenWidth = MeasureSpec.getSize(widthMeasureSpec);
+        screenHeight = MeasureSpec.getSize(heightMeasureSpec);
     }
 
     @Override
@@ -119,7 +122,6 @@ public class XfermodeView extends View {
         if (screenHeight<0|screenWidth<0){
             return null;
         }
-
 
         Bitmap bitmap = Bitmap.createBitmap((int) screenWidth / 4, (int) screenHeight / 4, ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
